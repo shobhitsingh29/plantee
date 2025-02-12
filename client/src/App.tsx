@@ -7,6 +7,7 @@ import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import Auth from "@/pages/auth";
 import PlantPage from "@/pages/plant/[id]";
+import IdentifyPage from "@/pages/identify";
 
 function Router() {
   return (
@@ -17,6 +18,7 @@ function Router() {
           <Route path="/" component={Home} />
           <Route path="/auth" component={Auth} />
           <Route path="/plant/:id" component={PlantPage} />
+          <Route path="/identify" component={IdentifyPage} />
           <Route component={NotFound} />
         </Switch>
       </main>
