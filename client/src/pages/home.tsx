@@ -46,8 +46,8 @@ export default function Home() {
   const currentSeason = getCurrentSeason();
 
   return (
-    <div className="container mx-auto px-4 py-6">
-      <div className="mb-6">
+    <div className="container mx-auto px-4 py-6 animate-fade-in">
+      <div className="mb-6 animate-slide-up">
         <h2 className="text-xl font-semibold mb-4">All Feature</h2>
       </div>
 

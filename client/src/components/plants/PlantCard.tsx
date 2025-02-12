@@ -11,7 +11,7 @@ export function PlantCard({ plant }: PlantCardProps) {
   return (
     <Link href={`/plant/${plant.id}`}>
       <a className="block transform transition-all hover:scale-[1.02]">
-        <Card className="overflow-hidden">
+        <Card className="overflow-hidden animate-scale hover:shadow-lg transition-shadow duration-300">
           <div className="aspect-square relative overflow-hidden">
             <img
               src={plant.image}
