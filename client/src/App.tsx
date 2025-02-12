@@ -9,6 +9,8 @@ import Auth from "@/pages/auth";
 import PlantPage from "@/pages/plant/[id]";
 import IdentifyPage from "@/pages/identify";
 import WaterCalculator from "@/pages/water-calculator";
+import DiagnosePage from "@/pages/diagnose";
+import RemindersPage from "@/pages/reminders";
 
 function Router() {
   return (
