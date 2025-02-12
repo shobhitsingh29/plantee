@@ -67,19 +67,19 @@ export default function Home() {
                 </p>
                 <ul className="mt-3 space-y-2 text-sm">
                   <li className="flex items-center gap-2">
-                    <Sparkles className="h-4 w-4 text-amber-500" />
+                    <Sparkle className="h-4 w-4 text-amber-500" />
                     Unlimited plant identification
                   </li>
                   <li className="flex items-center gap-2">
-                    <Sparkles className="h-4 w-4 text-amber-500" />
+                    <Sparkle className="h-4 w-4 text-amber-500" />
                     Advanced disease detection
                   </li>
                   <li className="flex items-center gap-2">
-                    <Sparkles className="h-4 w-4 text-amber-500" />
+                    <Sparkle className="h-4 w-4 text-amber-500" />
                     Custom care schedules
                   </li>
                   <li className="flex items-center gap-2">
-                    <Sparkles className="h-4 w-4 text-amber-500" />
+                    <Sparkle className="h-4 w-4 text-amber-500" />
                     Expert plant care advice
                   </li>
                 </ul>

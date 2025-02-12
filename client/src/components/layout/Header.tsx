@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Camera, Droplets, Leaf, User, LogOut, Settings } from "lucide-react";
+import { Camera, Droplets, Leaf, User, LogOut, Settings, Flower } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import {
   DropdownMenu,
@@ -18,12 +18,10 @@ export function Header() {
   return (
     <header className="border-b">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/">
-          <a className="flex items-center space-x-2 text-primary">
-            <Flower className="h-6 w-6" />
-            <span className="font-semibold text-lg">Plantoo</span>
-          </a>
-        </Link>
+        <div className="flex items-center space-x-2 text-primary cursor-pointer" onClick={() => setLocation('/')}>
+          <Flower className="h-6 w-6" />
+          <span className="font-semibold text-lg">Plantoo</span>
+        </div>
 
         <div className="flex items-center space-x-4">
           <Button variant="ghost" className="hidden sm:flex items-center gap-2">
