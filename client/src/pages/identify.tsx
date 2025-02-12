@@ -2,12 +2,15 @@ import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Camera, Upload } from "lucide-react";
-import { identifyPlantFromImage } from "@/lib/gemini";
+import { identifyPlantFromImage, analyzePlantHealth } from "@/lib/gemini";
+import { PlantHealth } from "@/components/plants/PlantHealth";
 
 export default function IdentifyPage() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [isIdentifying, setIsIdentifying] = useState(false);
+  const [isAnalyzingHealth, setIsAnalyzingHealth] = useState(false);
   const [result, setResult] = useState<any>(null);
+  const [healthAnalysis, setHealthAnalysis] = useState<any>(null);
 
   const handleImageSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -15,6 +18,8 @@ export default function IdentifyPage() {
       const reader = new FileReader();
       reader.onloadend = () => {
         setSelectedImage(reader.result as string);
+        setResult(null);
+        setHealthAnalysis(null);
       };
       reader.readAsDataURL(file);
     }
@@ -34,10 +39,24 @@ export default function IdentifyPage() {
     }
   };
 
+  const handleHealthCheck = async () => {
+    if (!selectedImage) return;
+
+    try {
+      setIsAnalyzingHealth(true);
+      const healthResult = await analyzePlantHealth(selectedImage);
+      setHealthAnalysis(healthResult);
+    } catch (error) {
+      console.error('Error analyzing plant health:', error);
+    } finally {
+      setIsAnalyzingHealth(false);
+    }
+  };
+
   return (
     <div className="container mx-auto px-4 py-6">
-      <h2 className="text-xl font-semibold mb-4">Identify Plant</h2>
-      
+      <h2 className="text-xl font-semibold mb-4">Identify & Analyze Plant</h2>
+
       <Card className="mb-6">
         <CardContent className="p-6">
           <div className="space-y-4">
@@ -52,7 +71,11 @@ export default function IdentifyPage() {
                   <Button
                     variant="outline"
                     className="absolute top-2 right-2"
-                    onClick={() => setSelectedImage(null)}
+                    onClick={() => {
+                      setSelectedImage(null);
+                      setResult(null);
+                      setHealthAnalysis(null);
+                    }}
                   >
                     Change
                   </Button>
@@ -90,33 +113,51 @@ export default function IdentifyPage() {
             </div>
 
             {selectedImage && (
-              <Button 
-                className="w-full" 
-                onClick={handleIdentify}
-                disabled={isIdentifying}
-              >
-                {isIdentifying ? "Identifying..." : "Identify Plant"}
-              </Button>
-            )}
-
-            {result && (
-              <div className="space-y-4 mt-6">
-                <h3 className="text-lg font-semibold">{result.commonName}</h3>
-                <p className="text-sm text-muted-foreground italic">{result.scientificName}</p>
-                <div className="space-y-2">
-                  <p className="text-sm">{result.description}</p>
-                  <h4 className="font-medium mt-4">Care Instructions:</h4>
-                  <ul className="text-sm space-y-2">
-                    <li>Water: {result.careInstructions.water}</li>
-                    <li>Sunlight: {result.careInstructions.sunlight}</li>
-                    <li>Soil: {result.careInstructions.soil}</li>
-                  </ul>
-                </div>
+              <div className="flex gap-2">
+                <Button 
+                  className="flex-1" 
+                  onClick={handleIdentify}
+                  disabled={isIdentifying}
+                >
+                  {isIdentifying ? "Identifying..." : "Identify Plant"}
+                </Button>
+                <Button 
+                  className="flex-1" 
+                  onClick={handleHealthCheck}
+                  disabled={isAnalyzingHealth}
+                  variant="secondary"
+                >
+                  {isAnalyzingHealth ? "Analyzing..." : "Check Health"}
+                </Button>
               </div>
             )}
           </div>
         </CardContent>
       </Card>
+
+      {result && (
+        <Card className="mb-6">
+          <CardContent className="p-6">
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">{result.commonName}</h3>
+              <p className="text-sm text-muted-foreground italic">{result.scientificName}</p>
+              <div className="space-y-2">
+                <p className="text-sm">{result.description}</p>
+                <h4 className="font-medium mt-4">Care Instructions:</h4>
+                <ul className="text-sm space-y-2">
+                  <li>Water: {result.careInstructions.water}</li>
+                  <li>Sunlight: {result.careInstructions.sunlight}</li>
+                  <li>Soil: {result.careInstructions.soil}</li>
+                </ul>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {healthAnalysis && (
+        <PlantHealth analysis={healthAnalysis} isLoading={isAnalyzingHealth} />
+      )}
     </div>
   );
 }

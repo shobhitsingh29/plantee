@@ -25,3 +25,42 @@ export async function identifyPlantFromImage(imageBase64: string) {
     throw new Error('Failed to identify plant');
   }
 }
+
+export async function analyzePlantHealth(imageBase64: string) {
+  try {
+    const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
+
+    const prompt = `Analyze this plant's health and provide a detailed assessment. Include:
+    - Overall health status
+    - Any visible issues or diseases
+    - Recommendations for improvement
+    Format the response as JSON with these fields:
+    {
+      overallHealth: "healthy" | "moderate" | "poor",
+      healthScore: number (0-100),
+      issues: Array<{
+        type: string,
+        severity: "low" | "medium" | "high",
+        description: string
+      }>,
+      recommendations: Array<string>,
+      immediateActions: Array<string>
+    }`;
+
+    const result = await model.generateContent([
+      prompt,
+      {
+        inlineData: {
+          mimeType: "image/jpeg",
+          data: imageBase64.split(',')[1]
+        }
+      }
+    ]);
+
+    const response = result.response;
+    return JSON.parse(response.text());
+  } catch (error) {
+    console.error('Error analyzing plant health:', error);
+    throw new Error('Failed to analyze plant health');
+  }
+}
