@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -57,6 +58,22 @@
   .hover-lift:hover {
     transform: translateY(-4px);
   }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out;
+  }
+
+  .animate-scale {
+    transition: transform 0.2s ease;
+  }
+
+  .animate-scale:hover {
+    transform: scale(1.02);
+  }
 }
 
 @keyframes float {
@@ -89,22 +106,6 @@
 @keyframes bounceSlight {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-5px); }
-}
-  .animate-fade-in {
-    animation: fadeIn 0.5s ease-in;
-  }
-
-  .animate-slide-up {
-    animation: slideUp 0.5s ease-out;
-  }
-
-  .animate-scale {
-    transition: transform 0.2s ease;
-  }
-
-  .animate-scale:hover {
-    transform: scale(1.02);
-  }
 }
 
 @keyframes fadeIn {
