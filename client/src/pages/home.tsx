@@ -58,13 +58,31 @@ export default function Home() {
               <div className="space-y-1">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="font-medium">Try Premium Features</span>
-                  <Button size="sm" variant="default" className="h-7 px-3 text-xs">
-                    Try
+                  <Button size="sm" variant="default" className="h-7 px-3 text-xs bg-gradient-to-r from-amber-500 to-amber-300 text-white hover:from-amber-600 hover:to-amber-400">
+                    Upgrade
                   </Button>
                 </div>
                 <p className="text-sm text-muted-foreground">
                   Access advanced plant care features and unlimited plant identification
                 </p>
+                <ul className="mt-3 space-y-2 text-sm">
+                  <li className="flex items-center gap-2">
+                    <Sparkles className="h-4 w-4 text-amber-500" />
+                    Unlimited plant identification
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Sparkles className="h-4 w-4 text-amber-500" />
+                    Advanced disease detection
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Sparkles className="h-4 w-4 text-amber-500" />
+                    Custom care schedules
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Sparkles className="h-4 w-4 text-amber-500" />
+                    Expert plant care advice
+                  </li>
+                </ul>
               </div>
             </div>
           </CardContent>
