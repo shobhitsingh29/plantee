@@ -1,8 +1,9 @@
 import { Plant } from "@/types";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Droplets, Sun, ArrowLeft, Calendar } from "lucide-react";
+import { Droplets, Sun, ArrowLeft } from "lucide-react";
 import { Link } from "wouter";
+import { PlantReminders } from "./PlantReminders";
 
 interface PlantDetailsProps {
   plant: Plant;
@@ -64,9 +65,17 @@ export function PlantDetails({ plant }: PlantDetailsProps) {
             <p className="text-muted-foreground">{plant.careInstructions}</p>
           </div>
 
-          <Button className="w-full">
-            <Calendar className="mr-2 h-4 w-4" /> Set Watering Reminder
-          </Button>
+          <PlantReminders 
+            plant={plant}
+            onAddReminder={(reminder) => {
+              console.log('Add reminder:', reminder);
+              // TODO: Implement reminder addition
+            }}
+            onCompleteReminder={(reminderId) => {
+              console.log('Complete reminder:', reminderId);
+              // TODO: Implement reminder completion
+            }}
+          />
         </div>
       </div>
     </div>

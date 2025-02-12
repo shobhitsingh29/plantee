@@ -1,6 +1,8 @@
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Sprout, Flower2, Droplets, Sun, Bell } from "lucide-react";
+import { mockSeasonalTips } from "@/data/mockData";
+import { SeasonalTips } from "@/components/plants/SeasonalTips";
 
 interface FeatureCard {
   icon: React.ReactNode;
@@ -31,7 +33,18 @@ const features: FeatureCard[] = [
   }
 ];
 
+// Helper function to determine current season
+function getCurrentSeason(): 'spring' | 'summer' | 'fall' | 'winter' {
+  const month = new Date().getMonth();
+  if (month >= 2 && month <= 4) return 'spring';
+  if (month >= 5 && month <= 7) return 'summer';
+  if (month >= 8 && month <= 10) return 'fall';
+  return 'winter';
+}
+
 export default function Home() {
+  const currentSeason = getCurrentSeason();
+
   return (
     <div className="container mx-auto px-4 py-6">
       <div className="mb-6">
@@ -58,7 +71,7 @@ export default function Home() {
         </Card>
       </div>
 
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 gap-3 mb-6">
         {features.map((feature, index) => (
           <Card key={index} className="hover:bg-primary/5 transition-colors cursor-pointer border shadow-sm">
             <CardContent className="p-4">
@@ -68,6 +81,10 @@ export default function Home() {
             </CardContent>
           </Card>
         ))}
+      </div>
+
+      <div className="mb-6">
+        <SeasonalTips tips={mockSeasonalTips} currentSeason={currentSeason} />
       </div>
     </div>
   );

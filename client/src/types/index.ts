@@ -16,3 +16,21 @@ export interface User {
   email: string;
   avatar?: string;
 }
+
+export interface Reminder {
+  id: string;
+  plantId: string;
+  type: 'watering' | 'fertilizing' | 'pruning' | 'repotting';
+  dueDate: string;
+  completed: boolean;
+  createdAt: string;
+  notes?: string;
+}
+
+export interface SeasonalTip {
+  id: string;
+  season: 'spring' | 'summer' | 'fall' | 'winter';
+  title: string;
+  description: string;
+  applicablePlants: string[]; // plant IDs
+}

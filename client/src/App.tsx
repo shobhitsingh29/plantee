@@ -8,6 +8,7 @@ import Home from "@/pages/home";
 import Auth from "@/pages/auth";
 import PlantPage from "@/pages/plant/[id]";
 import IdentifyPage from "@/pages/identify";
+import WaterCalculator from "@/pages/water-calculator";
 
 function Router() {
   return (
@@ -19,6 +20,7 @@ function Router() {
           <Route path="/auth" component={Auth} />
           <Route path="/plant/:id" component={PlantPage} />
           <Route path="/identify" component={IdentifyPage} />
+          <Route path="/water-calculator" component={WaterCalculator} />
           <Route component={NotFound} />
         </Switch>
       </main>

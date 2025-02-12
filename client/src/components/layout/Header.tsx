@@ -8,7 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { mockUser } from "@/data/mockData";
-import { Flower, Leaf, Camera } from "lucide-react";
+import { Flower, Leaf, Camera, Droplets } from "lucide-react";
 
 export function Header() {
   return (
@@ -26,6 +26,13 @@ export function Header() {
             <Button variant="ghost" className="hidden sm:flex items-center gap-2">
               <Camera className="h-4 w-4" />
               Identify Plant
+            </Button>
+          </Link>
+
+          <Link href="/water-calculator">
+            <Button variant="ghost" className="hidden sm:flex items-center gap-2">
+              <Droplets className="h-4 w-4" />
+              Water Calculator
             </Button>
           </Link>
 
