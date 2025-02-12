@@ -21,6 +21,8 @@ function Router() {
           <Route path="/plant/:id" component={PlantPage} />
           <Route path="/identify" component={IdentifyPage} />
           <Route path="/water-calculator" component={WaterCalculator} />
+          <Route path="/diagnose" component={DiagnosePage} />
+          <Route path="/reminders" component={RemindersPage} />
           <Route component={NotFound} />
         </Switch>
       </main>

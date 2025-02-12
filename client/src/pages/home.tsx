@@ -73,13 +73,23 @@ export default function Home() {
 
       <div className="grid grid-cols-2 gap-3 mb-6">
         {features.map((feature, index) => (
-          <Card key={index} className="hover:bg-primary/5 transition-colors cursor-pointer border shadow-sm">
-            <CardContent className="p-4">
-              <div className="mb-3">{feature.icon}</div>
-              <h3 className="font-medium text-base mb-1">{feature.title}</h3>
-              <p className="text-sm text-muted-foreground">{feature.description}</p>
-            </CardContent>
-          </Card>
+          <a 
+            href={
+              feature.title === "Diagnose" ? "/diagnose" :
+              feature.title === "Identify" ? "/identify" :
+              feature.title === "Water Calculator" ? "/water-calculator" :
+              "/reminders"
+            } 
+            key={index}
+          >
+            <Card className="hover:bg-primary/5 transition-colors cursor-pointer border shadow-sm">
+              <CardContent className="p-4">
+                <div className="mb-3">{feature.icon}</div>
+                <h3 className="font-medium text-base mb-1">{feature.title}</h3>
+                <p className="text-sm text-muted-foreground">{feature.description}</p>
+              </CardContent>
+            </Card>
+          </a>
         ))}
       </div>
 
