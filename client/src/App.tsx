@@ -11,6 +11,8 @@ import IdentifyPage from "@/pages/identify";
 import WaterCalculator from "@/pages/water-calculator";
 import DiagnosePage from "@/pages/diagnose";
 import RemindersPage from "@/pages/reminders";
+import ProfilePage from "@/pages/profile"; // Added import
+
 
 function Router() {
   return (
@@ -25,6 +27,7 @@ function Router() {
           <Route path="/water-calculator" component={WaterCalculator} />
           <Route path="/diagnose" component={DiagnosePage} />
           <Route path="/reminders" component={RemindersPage} />
+          <Route path="/profile" component={ProfilePage} /> {/* Added route */}
           <Route component={NotFound} />
         </Switch>
       </main>

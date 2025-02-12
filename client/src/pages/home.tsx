@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Sprout, Flower2, Droplets, Sun, Bell } from "lucide-react";
+import { Sprout, Flower2, Droplets, Sun, Bell, Sparkles } from "lucide-react";
 import { mockSeasonalTips } from "@/data/mockData";
 import { SeasonalTips } from "@/components/plants/SeasonalTips";
 
