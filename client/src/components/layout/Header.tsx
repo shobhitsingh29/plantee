@@ -22,20 +22,6 @@ export function Header() {
         </Link>
 
         <div className="flex items-center space-x-4">
-          <Link href="/identify">
-            <Button variant="ghost" className="hidden sm:flex items-center gap-2">
-              <Camera className="h-4 w-4" />
-              Identify Plant
-            </Button>
-          </Link>
-
-          <Link href="/water-calculator">
-            <Button variant="ghost" className="hidden sm:flex items-center gap-2">
-              <Droplets className="h-4 w-4" />
-              Water Calculator
-            </Button>
-          </Link>
-
           <Button variant="ghost" className="hidden sm:flex items-center gap-2">
             <Leaf className="h-4 w-4" />
             Add Plant
