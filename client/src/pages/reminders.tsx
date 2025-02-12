@@ -8,7 +8,7 @@ export default function RemindersPage() {
   const reminders = mockPlants.map(plant => ({
     id: plant.id,
     plantName: plant.name,
-    nextWatering: new Date(plant.lastWatered.getTime() + plant.wateringFrequency * 24 * 60 * 60 * 1000)
+    nextWatering: new Date(new Date(plant.lastWatered).getTime() + plant.wateringFrequency * 24 * 60 * 60 * 1000)
   }));
 
   return (
