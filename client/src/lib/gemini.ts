@@ -2,7 +2,51 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const genAI = new GoogleGenerativeAI('AIzaSyDm7tH-5zNtQ3FeKur9EDFr3k9ZS1TX0hQ');
 
-export async function identifyPlantFromImage(imageBase64: string) {
+export interface EnhancedPlantIdentification {
+  commonName: string;
+  scientificName: string;
+  family: string;
+  origin: string[];
+  habitat: string[];
+  growthRate: 'slow' | 'moderate' | 'fast';
+  toxicity: {
+    toxic: boolean;
+    toxicTo: string[];
+    symptoms: string[];
+  };
+  propagation: {
+    methods: string[];
+    difficulty: 'easy' | 'moderate' | 'difficult';
+    bestSeasons: string[];
+  };
+  careInstructions: {
+    water: string;
+    sunlight: string;
+    soil: string;
+    temperature: {
+      min: number;
+      max: number;
+      unit: 'C' | 'F';
+    };
+    humidity: {
+      min: number;
+      max: number;
+    };
+    fertilizer: {
+      type: string;
+      frequency: string;
+    };
+  };
+  commonProblems: Array<{
+    problem: string;
+    symptoms: string[];
+    solutions: string[];
+  }>;
+  companionPlants: string[];
+  funFacts: string[];
+}
+
+export async function identifyPlantFromImage(imageBase64: string): Promise<EnhancedPlantIdentification> {
   try {
     const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
 
