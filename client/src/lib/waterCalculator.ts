@@ -95,3 +95,44 @@ export function calculateWateringSchedule(
     notes
   };
 }
+export function calculateOptimalWateringSchedule(
+  plant: {
+    species: string;
+    wateringFrequency: number;
+    sunlight: string;
+  },
+  environmentalFactors: {
+    temperature: number;
+    humidity: number;
+    season: string;
+  }
+) {
+  const baseFrequency = plant.wateringFrequency;
+  let adjustedFrequency = baseFrequency;
+
+  // Adjust for temperature
+  if (environmentalFactors.temperature > 30) {
+    adjustedFrequency *= 1.3;
+  } else if (environmentalFactors.temperature < 15) {
+    adjustedFrequency *= 0.7;
+  }
+
+  // Adjust for humidity
+  if (environmentalFactors.humidity < 40) {
+    adjustedFrequency *= 1.2;
+  } else if (environmentalFactors.humidity > 70) {
+    adjustedFrequency *= 0.8;
+  }
+
+  // Adjust for season
+  const seasonalAdjustments = {
+    summer: 1.2,
+    winter: 0.7,
+    spring: 1.0,
+    fall: 0.9,
+  };
+
+  adjustedFrequency *= seasonalAdjustments[environmentalFactors.season as keyof typeof seasonalAdjustments];
+
+  return Math.round(adjustedFrequency);
+}

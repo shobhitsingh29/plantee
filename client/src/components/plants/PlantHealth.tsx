@@ -17,6 +17,11 @@ interface HealthAnalysis {
   issues: HealthIssue[];
   recommendations: string[];
   immediateActions: string[];
+  predictedDiseases: {
+    name: string;
+    probability: number;
+    treatment: string;
+  }[];
 }
 
 interface PlantHealthProps {

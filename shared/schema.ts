@@ -112,3 +112,11 @@ export const insertUserSchema = createInsertSchema(users).pick({
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
+export const plantHealthHistory = pgTable("plant_health_history", {
+  id: serial("id").primaryKey(),
+  plantId: integer("plant_id").references(() => plants.id),
+  date: timestamp("date").notNull(),
+  healthScore: integer("health_score").notNull(),
+  issues: jsonb("issues").notNull(),
+  notes: text("notes"),
+});
